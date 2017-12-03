@@ -13,76 +13,26 @@ namespace Formularios.Services
     class ExpedienteServices : GenericService
     {
         private static string URLBASE = @"Server=.\sqlexpress;Database=BD_CLINICA;Trusted_Connection=True;";
-        private string TableName = "";
-        private string IdColName = "";
-
-        public ExpedienteServices(string tableName, string idColName)
-        {
-            TableName = tableName;
-            IdColName = idColName;
-        }
-
-
+      
         public bool Actualizar(string query)
         {
-            SqlConnection connection = new SqlConnection(URLBASE);
-            SqlCommand command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
-            try
-            {
-                int i = command.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    MessageBox.Show("Actualizado exitosamente");
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
+       
 
             return false;
         }
 
         public bool Borrar(string id)
         {
-            string query = "DELETE FROM " + TableName + " WHERE " + IdColName + " = " + id;
-            SqlConnection connection = new SqlConnection(URLBASE);
-            SqlCommand command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
-            try
-            {
-                int i = command.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    MessageBox.Show("Borrado exitosamente");
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
+            
             return false;
         }
 
         public SqlDataReader Buscar(string id)
         {
-            string query = "SELECT * FROM " + TableName + " WHERE " + IdColName + " = " + id;
+            string query = "SELECT  " +
+                "T2.ID_PACIENTE, T2.NOMBRE_PAC, T2.APELLIDO_PAC, T2.EDAD, " +
+                "T2.DUI_PAC, T2.DIRECCION, T2.TELEFONO, T1.DESCRIPCION_DIAGNOSTICO " +
+                "FROM DIAGNOSTICO T1 INNER JOIN PACIENTE T2 ON T1.ID_PACIENTE1 = T2.ID_PACIENTE where T1.ID_PACIENTE1 = " + id;
             SqlConnection connection = new SqlConnection(URLBASE);
             SqlCommand command = new SqlCommand(query, connection);
             command.CommandType = CommandType.Text;
@@ -110,62 +60,14 @@ namespace Formularios.Services
 
         public bool Crear(string query)
         {
-            SqlConnection connection = new SqlConnection(URLBASE);
-            SqlCommand command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
-            try
-            {
-                int i = command.ExecuteNonQuery();
-                if (i > 0)
-                {
-                    MessageBox.Show("Creado exitosamente");
-                    return true;
-                }
-                return false;
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
-            finally
-            {
-                connection.Close();
-            }
-
+            
             return false;
         }
 
+
         public int GetUltimoID()
         {
-            string query = "SELECT * FROM " + TableName + " ORDER BY " + IdColName + " DESC;";
-            SqlConnection connection = new SqlConnection(URLBASE);
-            SqlCommand command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
-            SqlDataReader reader;
-            try
-            {
-                reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    var test = int.Parse(reader.GetString(2));
-                    return int.Parse(reader.GetString(2));
-                }
-
-                return 0;
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
-            finally
-            {
-                //connection.Close();
-
-            }
+            
 
             return 0;
         }
@@ -174,28 +76,7 @@ namespace Formularios.Services
 
         public SqlDataReader MostrarTodo()
         {
-            string query = "SELECT * FROM " + TableName;
-            SqlConnection connection = new SqlConnection(URLBASE);
-            SqlCommand command = new SqlCommand(query, connection);
-            command.CommandType = CommandType.Text;
-            connection.Open();
-            SqlDataReader reader;
-            try
-            {
-                reader = command.ExecuteReader();
-                if (reader != null)
-                {
-                    return reader;
-                }
-
-                return null;
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error: " + e.Message);
-            }
+           
 
 
             return null;

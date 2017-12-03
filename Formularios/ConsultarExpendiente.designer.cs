@@ -34,6 +34,7 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dgtLista = new System.Windows.Forms.DataGridView();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgtLista)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(204, 58);
+            this.txtCodigo.Location = new System.Drawing.Point(230, 62);
             this.txtCodigo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(194, 29);
@@ -89,11 +90,22 @@
             this.dgtLista.Size = new System.Drawing.Size(1317, 462);
             this.dgtLista.TabIndex = 5;
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(230, 102);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(116, 32);
+            this.btnCerrar.TabIndex = 6;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // frmConsultarExpediente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 665);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.dgtLista);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.txtCodigo);
@@ -119,6 +131,7 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.DataGridView dgtLista;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
 
